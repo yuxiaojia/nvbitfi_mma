@@ -96,15 +96,18 @@ INST_ADDRESS_MODE = "inst_address"
 #######################################################################
 G_FP64 = 0
 G_FP32 = 1
-G_LD = 2
-G_PR = 3
-G_NODEST = 4 # not really an igid
-G_OTHERS = 5 
-G_GPPR = 6 # instructions that write to either a GPR or a PR register
-G_GP = 7 # instructions that write to a GPR register
-NUM_INST_GROUPS = 8
+G_FP16 = 2  # Fernando Fernandes, 10/2022 New fault sites
+G_MMA = 3
+G_LD = 4
+G_PR = 5
+G_NODEST = 6 # not really an igid
+G_OTHERS = 7
+G_GPPR = 8 # instructions that write to either a GPR or a PR register
+G_GP = 9 # instructions that write to a GPR register
+NUM_INST_GROUPS = 10
 
-IGID_STR = [ "fp64", "fp32", "ld", "pr", "nodest", "others", "gppr", "gp" ]
+# Fernando Fernandes, 10/2022 New fault sites
+IGID_STR = [ "fp64", "fp32", "fp16", "mma", "ld", "pr", "nodest", "others", "gppr", "gp" ]
 
 
 #######################################################################
@@ -183,8 +186,9 @@ inst_value_igid_bfm_map = {
 # 	G_GP: [FLIP_SINGLE_BIT, FLIP_TWO_BITS, RANDOM_VALUE, ZERO_VALUE]
 # 	G_FP64: [FLIP_SINGLE_BIT, FLIP_TWO_BITS, RANDOM_VALUE, ZERO_VALUE]
 # 	G_FP32: [FLIP_SINGLE_BIT, FLIP_TWO_BITS, RANDOM_VALUE, ZERO_VALUE]
-# 	G_LD: [FLIP_SINGLE_BIT, FLIP_TWO_BITS, RANDOM_VALUE, ZERO_VALUE] 
-
+# 	G_LD: [FLIP_SINGLE_BIT, FLIP_TWO_BITS, RANDOM_VALUE, ZERO_VALUE]
+# 	G_FP16: [FLIP_SINGLE_BIT, FLIP_TWO_BITS, RANDOM_VALUE, ZERO_VALUE],
+# 	G_MMA:  [FLIP_SINGLE_BIT, FLIP_TWO_BITS, RANDOM_VALUE, ZERO_VALUE],
 }
 
 
@@ -258,4 +262,3 @@ special_sdc_check_log = "special_check.log"
 NUM_GPUS = 1
 
 use_filelock = False
-
